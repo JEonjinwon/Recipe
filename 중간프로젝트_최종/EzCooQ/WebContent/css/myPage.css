@@ -1,0 +1,136 @@
+
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {height: 1500px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: orange;
+    color: white;
+    padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+    height: auto;
+    padding: 15px;
+    }
+    .row.content {height: auto;} 
+}
+
+.container-fluid{
+	width : 1200px;
+}
+
+
+
+#myBoardTable{
+	border-top: 1px solid #acacac;
+	border-bottom: 1px solid #acacac;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 75%;
+    text-align:center;
+    table-layout: fixed;
+    color : black;
+}
+#myBoardTable tr th{
+	border-top: 1px solid #acacac;
+	border-bottom: 1px solid #acacac;
+	height: 50px;
+	font-size : 1.5em;
+	font-weight : bold;
+	border-collapse: collapse;
+}
+#myBoardTable tr th:nth-child(odd){
+	width:70%;
+}
+#myBoardTable tr th:nth-child(even){
+	width:30%;
+}
+#boardTd{
+	height:30px;
+	text-align:center;
+	padding-left:15px;
+	font-size: 1.3em;
+}
+
+#myBoardTable tr td:nth-child(odd){
+	width:75%;
+}
+#myBoardTable tr td:nth-child(even){
+	width:25%;
+}
+#emptyBoard{
+	border-top: 1px solid #acacac;
+	border-bottom: 1px solid #acacac;
+	width: 100%;
+	height : 70px;
+	font-size : 1.3em;
+	font-weight:bold;
+	color : orange;
+	text-align: center;
+}
+
+
+
+#myCommentTable{
+	border-top: 1px solid #acacac;
+	border-bottom: 1px solid #acacac;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 75%;
+    text-align:center;
+    table-layout: fixed;
+    color : black;
+}
+#myCommentTable tr th{
+	border-top: 1px solid #acacac;
+	border-bottom: 1px solid #acacac;
+	height: 50px;
+	font-size : 1.5em;
+	font-weight : bold;
+	border-collapse: collapse;
+}
+#myCommentTable tr th:nth-child(1){
+	width:10%;
+}
+#myCommentTable tr th:nth-child(2){
+	width:65%;
+}
+#myCommentTable tr th:nth-child(3){
+	width:25%;
+}
+#commentTd{
+	height:30px;
+	text-align:center;
+	padding-left:15px;
+	font-size: 1.3em;
+}
+
+#myCommentTable tr td:nth-child(1){
+	width:10%;
+}
+#myCommentTable tr td:nth-child(2){
+	width:65%;
+}
+#myCommentTable tr td:nth-child(3){
+	width:25%;
+}
+#emptyComment{
+	width: 100%;
+	height : 70px;
+	font-size : 1.3em;
+	font-weight:bold;
+	color : orange;
+	text-align: center;
+}
+

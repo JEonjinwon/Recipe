@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+<sqlMap namespace="comment">
+
+
+<resultMap class="kr.or.ddit.comment_board.vo.CommentBoardVO" id="CommentMap">	
+	<result property="boardNo" column="board_no"/>
+	<result property="comNo" column="com_no"/>
+	<result property="comDate" column="com_date"/>
+	<result property="comStar" column="com_star"/>
+	<result property="memId" column="mem_id"/>
+	<result property="comContent" column="com_content"/>
+</resultMap>
+
+<insert id="insertComment" parameterClass="kr.or.ddit.comment_board.vo.CommentBoardVO">
+INSERT INTO COMMENT_BOARD
+	(
+	Board_NO,
+	COM_NO,
+	COM_CONTENT,
+	COM_DATE,
+	COM_STAR,
+	MEM_ID
+	)
+VALUES(
+	#boardNo#,
+	com_seq.nextVal,
+	#comContent#,
+	SYSDATE,
+	#comStar#,
+	#memId#
+ )
+</insert>
+
+<!-- <insert id="insertPayRecipe" parameterClass="kr.or.ddit.board.vo.BoardVO"> -->
+<!-- INSERT INTO RP_BOARD -->
+<!-- 	( -->
+<!-- 	BOARD_NO, -->
+<!-- 	BOARD_TITLE, -->
+<!-- 	BOARD_CONTENT, -->
+<!-- 	BOARD_DATE, -->
+<!-- 	RECIPE_ID, -->
+<!-- 	FOOD_ID, -->
+<!-- 	MEM_ID, -->
+<!-- 	BOARD_PRICE -->
+<!-- 	) -->
+<!-- VALUES( -->
+<!-- 	board_seq.nextval, -->
+<!-- 	#boardTitle#, -->
+<!-- 	#boardContent#, -->
+<!--  	SYSDATE, -->
+<!--  	#recipeId#, -->
+<!--  	#foodId#, -->
+<!--  	#memId#, -->
+<!--  	#boardPrice# -->
+<!--  ) -->
+<!-- </insert> -->
+
+<!-- <select id="dispayBoardAll" resultMap="boardMap"> -->
+<!-- SELECT * FROM RP_BOARD WHERE RECIPE_ID ='유저 레시피' -->
+<!-- </select> -->
+<!-- <select id="dispayPayBoardAll" resultMap="boardMap"> -->
+<!-- SELECT * FROM RP_BOARD WHERE RECIPE_ID ='유료 레시피' -->
+<!-- </select> -->
+
+<!-- <select id="getBoard" parameterClass="int" resultMap="boardMap"> -->
+<!-- SELECT * FROM RP_BOARD WHERE BOARD_No = #boardNo# -->
+<!-- </select> -->
+
+<!-- <update id="updateViewCnt"> -->
+<!-- 	update RP_BOARD set board_cnt = board_cnt+1 -->
+<!-- 	 where board_no = #boardNo#  -->
+<!-- </update> -->
+
+<!-- <update id="updateLikeCnt"> -->
+<!-- 	UPDATE RP_BOARD SET BOARD_LIKE = BOARD_LIKE+1 -->
+<!-- 	WHERE boardNo = #boardNo# -->
+<!-- </update> -->
+
+
+
+<!-- 내 작성글 불러오기 -->
+<select id="selectMyComment" resultMap="CommentMap">
+SELECT * FROM COMMENT_BOARD WHERE MEM_ID = #memId#
+</select>
+
+<select id="dispalyCommentBoardAll" resultMap="CommentMap">
+	SELECT * FROM COMMENT_BOARD WHERE BOARD_NO = #boardNo#
+</select>
+
+<select id="getComment" parameterClass="String" resultMap="CommentMap">
+	SELECT * FROM COMMENT_BOARD WHERE com_NO = #comNo#
+</select>
+
+<update id="updateCommentBoard" parameterClass="kr.or.ddit.comment_board.vo.CommentBoardVO">
+	UPDATE COMMENT_BOARD
+	   SET COM_STAR = #comStar#,
+	       COM_CONTENT = #comContent#,
+	       COM_DATE = SYSDATE
+	 WHERE COM_NO = #comNo#     
+</update>
+
+<delete id="DeleteCommentBoard" parameterClass="String">
+DELETE FROM COMMENT_BOARD WHERE com_No= #comNo# 
+</delete>
+
+</sqlMap>

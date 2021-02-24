@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="report">
+
+<resultMap class="kr.or.ddit.report.vo.ReportVO" id="reportMap">
+	<result property="reportNo" column="REPORT_NO"/>
+	<result property="reportDate" column="REPORT_DATE"/>
+	<result property="reportContent" column="REPORT_CONTENT"/>
+	<result property="reportCheck" column="REPORT_CHECK"/>
+	<result property="reportCheckDate" column="REPORT_CHECK_DATE"/>
+	<result property="reportCate" column="REPORT_CATE"/>
+	<result property="boardNo" column="BOARD_NO"/>
+	<result property="memId" column="MEM_ID"/>
+
+</resultMap>
+
+
+<insert id="insertreport" parameterClass="kr.or.ddit.report.vo.ReportVO" >
+
+
+INSERT INTO REPORT
+(
+REPORT_NO,
+REPORT_DATE,
+REPORT_CONTENT,
+BOARD_NO,
+MEM_ID
+)
+VALUES(
+REPORT_SEQ.nextval,
+SYSDATE,
+#reportContent#,
+#boardNo#,
+#memId#
+)
+
+</insert>
+
+<select id="selectReport" resultMap="reportMap">
+SELECT * FROM REPORT
+</select>
+
+<delete id="forgiveReport" parameterClass="kr.or.ddit.report.vo.ReportVO">
+	DELETE FROM REPORT WHERE REPORT_NO =#reportNo#
+
+
+</delete>
+<delete id="black" parameterClass="String">
+	DELETE FROM REPORT WHERE MEM_ID =#memId#
+</delete>
+
+
+
+
+</sqlMap>

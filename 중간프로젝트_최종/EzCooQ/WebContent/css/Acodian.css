@@ -1,0 +1,103 @@
+@import
+	url('https://fonts.googleapis.com/css?family=Montserrat:300,600');
+
+
+h1 {
+	margin-bottom: 5px;
+}
+
+.subheading {
+	font-size: .9em;
+	margin-top: 0;
+	text-transform: uppercase;
+}
+
+dl {
+	margin: 30px auto 60px;
+	max-width: 100%;
+}
+
+dt {
+	background: rgb(116,178,67);
+	border-left: 8px solid orange;
+	color: white;
+	width: 900px;
+	height: 100px;
+	font-weight: 600;
+	margin-left: 150px;
+	text-align: left;
+	text-transform: uppercase;
+	transition: all .5s;
+}
+
+dt:after, dt:before {
+	content: "\f078";
+	font-family: fontAwesome;
+	position: absolute;
+	right: 15px;
+	height: 28px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	padding-right: 20px;
+	transition: all .7s ease-in-out;
+}
+
+dt:before {
+	opacity: 0;
+	transition: all .4s ease-in-out;
+}
+
+dt:hover {
+	cursor: pointer;
+}
+
+dt+dd {
+	max-height: 0;
+}
+
+.dd {
+	background: #1C1C1C;
+	width:900px;
+	margin: 0;
+	margin-left : 150px;
+	overflow: hidden;
+	padding: 1px 50px;
+	transition: all .5s;
+	color: black;
+	background: rgb(250, 248, 235);
+}
+
+dt.open {
+	background: orange;
+	border-color: red;
+	color: black;
+	width:900px;
+	margin-left : 150px;
+}
+
+dt.open:after {
+	transform: rotate(180deg) translateY(-2px);
+}
+
+dt.open:before {
+	opacity: 1;
+	transform: rotate(-360deg) translateY(-3px);
+}
+
+dt.open+dd {
+	margin: 0;
+	margin-left : 150px;
+	max-height: 80%;
+	padding-left: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	background: #efefef;
+}
+
+.Detail{
+	text-align: center;
+	width:1200px;
+	margin:auto;
+}

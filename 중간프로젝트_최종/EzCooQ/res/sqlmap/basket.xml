@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="basket">
+
+	<resultMap class="kr.or.ddit.cart.vo.CartVO" id="cartMap">
+		<result property="cartNo" column="cart_no"/>
+		<result property="cartDate" column="cart_date"/>
+		<result property="memId" column="mem_id"/>
+		<result property="boardNo" column="board_no"/>
+		<result property="payCheck" column="pay_check"/>
+	</resultMap>
+
+	<resultMap class="kr.or.ddit.board.vo.BoardVO" id="boardMap">	
+	<result property="boardNo" column="board_no"/>
+	<result property="boardTitle" column="board_title"/>
+	<result property="boardContent" column="board_content"/>
+	<result property="boardDate" column="board_date"/>
+	<result property="boardPrice" column="board_price"/>
+	<result property="recipeId" column="recipe_id"/>
+	<result property="foodId" column="food_id"/>
+	<result property="memId" column="mem_id"/>
+	<result property="boardLike" column="board_like"/>
+	<result property="boardCnt" column="board_cnt"/>
+	<result property="boardImg" column="board_img"/>
+</resultMap>
+
+
+
+
+
+<update id="addChk" parameterClass="kr.or.ddit.cart.vo.CartVO" >
+
+UPDATE CART SET PAY_CHECK = 1
+WHERE BOARD_NO IN(SELECT DISTINCT BOARD_NO
+                               FROM CART
+                               WHERE MEM_ID = #memId#
+                             	 AND PAY_CHECK = 0
+                             	 AND BOARD_NO = #boardNo#)
+            AND MEM_ID = #memId#         
+</update>
+
+<update id="deleteChk" parameterClass="kr.or.ddit.cart.vo.CartVO" >
+
+UPDATE CART SET PAY_CHECK = 2
+WHERE BOARD_NO IN(SELECT DISTINCT BOARD_NO
+                               FROM CART
+                               WHERE MEM_ID = #memId#
+                             	 AND PAY_CHECK = 0
+                             	 AND BOARD_NO = #boardNo#)
+            AND MEM_ID = #memId#         
+</update>
+
+
+	<insert id="insertBasket" parameterClass="kr.or.ddit.cart.vo.CartVO" >
+		INSERT INTO CART
+	(
+	CART_NO,
+	CART_DATE,
+	MEM_ID,
+	BOARD_NO
+	)
+VALUES(
+	board_seq.nextval,
+	SYSDATE,
+	#memId#,
+ 	#boardNo#
+ 	
+ )
+	</insert>
+<select id="selectBasket" parameterClass="String" resultMap="boardMap">
+SELECT * FROM RP_BOARD
+WHERE BOARD_NO IN (SELECT DISTINCT BOARD_NO
+                               FROM CART
+                               WHERE MEM_ID = #memId#
+                              AND PAY_CHECK = 0)
+</select>	
+	
+<select id="selectPoint" parameterClass="String" resultClass="int">
+
+SELECT POINT_TOTAL FROM MEMBER 
+	WHERE mem_id =#memId#
+
+</select>	
+	
+	
+<update id="payCharge">
+ UPDATE MEMBER SET POINT_TOTAL =  (SELECT POINT_TOTAL FROM MEMBER
+    WHERE MEM_ID =#memId#)-(SELECT BOARD_PRICE FROM RP_BOARD
+   WHERE BOARD_NO =#boardNo#)
+   WHERE MEM_ID=#memId#
+   
+</update>	
+
+
+<select id="selectPayBasket" parameterClass="String" resultMap="boardMap">
+SELECT * FROM RP_BOARD
+WHERE BOARD_NO IN (SELECT DISTINCT BOARD_NO
+                               FROM CART
+                               WHERE MEM_ID = #memId#
+                              AND PAY_CHECK = 1)
+</select>	
+	
+<select id="getCart" parameterClass="String" resultMap="boardMap">
+	SELECT * FROM RP_BOARD WHERE BOARD_No = #boardNo#
+</select>	
+
+
+
+</sqlMap>			

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE 
+sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="member">
+	<resultMap class="kr.or.ddit.member.vo.MemberVO" id="memberMap">
+		<result property="memId" column="mem_id"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPass" column="mem_pass"/>
+		<result property="memBir" column="mem_bir"/>
+		<result property="memGender" column="mem_gender"/>
+		<result property="memTel" column="mem_Tel"/>
+		<result property="memMail" column="mem_mail"/>
+		<result property="memDel" column="mem_del"/>
+		<result property="pointTotal" column="point_total"/>
+		<result property="memLastPoint" column="mem_lastpoint"/>
+		
+	</resultMap>
+	
+	<!-- 회원가입 -->
+	<insert id="createMember">
+		INSERT INTO MEMBER 
+		(MEM_ID, MEM_NAME, MEM_PASS, MEM_BIR, MEM_GENDER, MEM_TEL, MEM_MAIL, MEM_DEL, POINT_TOTAL, ADMIN_AUTH)
+		VALUES
+		(#memId#, #memName#, #memPass#, TO_DATE(#memBir#, 'YYYYMMDD'), #memGender#, #memTel#, #memMail#, 0, 500, 0)
+	</insert>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkMember" parameterClass="String" resultClass="int">
+		SELECT COUNT(*)
+		FROM   MEMBER
+		WHERE  mem_id = #memId#
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="logIn" resultClass="int">
+		SELECT count(*) 
+		FROM MEMBER A, BLACKLIST B
+		where A.MEM_ID = #memId#
+		AND A.MEM_PASS = #memPass#
+		AND B.MEM_ID != #memId#
+	</select>
+	
+	<!-- 마이페이지 개인정보 조회 -->
+	<select id="getMember" resultMap="memberMap">
+		select * from MEMBER WHERE MEM_ID = #memId#
+	</select>
+
+	<update id="getPoint">
+		UPDATE MEMBER 
+		   SET POINT_TOTAL   = POINT_TOTAL + #point#,
+		   	   MEM_LASTPOINT = #memLastPoint#
+		WHERE MEM_ID = #memId#
+	</update>
+	
+	<!-- 관리자 페이지 회원 목록 조회 -->
+	<select id="displayAll" resultMap = "memberMap">
+		select * from MEMBER WHERE NOT(MEM_ID = #memId#)
+	</select>
+	
+	<update id="updateMember">
+		UPDATE MEMBER
+		SET    MEM_PASS   = #memPass#,
+			   MEM_NAME   = #memName#,
+			   MEM_BIR    = #memBir#,
+			   MEM_GENDER = #memGender#,
+			   MEM_TEL    = #memTel#,
+			   MEM_MAIL   = #memMail#
+		WHERE  MEM_ID     = #memId#
+	</update>
+	
+	<delete id="deleteMember" parameterClass="String">
+		DELETE FROM MEMBER
+		WHERE  MEM_ID = #memId#
+	</delete>
+	
+	
+</sqlMap>			
+
+
+
+
+

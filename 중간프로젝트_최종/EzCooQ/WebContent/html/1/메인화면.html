@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>CSS Align Center</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+html {
+	width: 100%;
+	height: 100%;
+	
+}
+body{
+font-family: "Malgun Gothic";
+ background-color: #e2e8f0;  
+}
+.container {
+	width: 1420px;
+	min-width: 1420px;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.outer {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.inner {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.centered {
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	padding: 1em;
+	background: #ff9900;
+	color: white;
+}
+
+.badge {
+	position: absolute;
+	right: -30px;
+	top: -15px;
+	background: pink;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+}
+
+header {
+	background: #ff9900;
+	width: 100%;
+	height: 100px;
+	clear: both;
+}\
+.logo{
+	float: left;
+	padding-top: 10px;
+	margin-left: 30px;
+}
+#loginBar{
+	float: right;
+	margin-top:20px;
+	margin-right:30px;
+	padding-top: 10px;
+}
+
+nav{
+	width:100%;
+	background: #ff9900;
+    clear: both;
+    display: block;
+}
+.navSearch{
+ 	float: right;
+ 	margin-top: 15px;
+}
+.navMenu{
+	float: left;
+	margin-left:50px;
+ 	margin-top: 15px;
+}
+li{
+	background: #ff9900;
+}
+
+section{
+	height: 100%;
+}
+footer{
+	
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="logo">
+				<h1>
+					<img alt="" src="boiling.png" style="width: 50px; height: auto;">
+					<strong>EZCOOK</strong>
+				</h1>
+			</div>
+			<div class="collapse navbar-collapse" id="loginBar">
+				<ul class="nav navbar-nav navbar-right" id="loginList">
+					<li><a href="" onclick="window.open('login.html','채팅','width=400px,height=500px,location=no,status=no,scrollbars=no');"><span class="glyphicon glyphicon-log-in"></span>
+							Login</a></li>
+					<li><a href="TB_member/TB_member.html"><span class="glyphicon glyphicon-user"></span>
+							회원가입</a></li>
+				</ul>
+			</div>
+
+		</header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="navMenu">
+				    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">Home</a></li>
+        <li>
+        	<a href="#" class="btn dropdown-toggle" type="button" data-toggle="dropdown">마이페이지
+        		<span class="caret"></span>
+        	</a>
+        	 <ul class="dropdown-menu">
+   				 <li><a href="마이페이지.html">회원정보</a></li>
+   				 <li><a href="#">주문내역</a></li>
+   				 <li><a href="#">적립금내역</a></li>
+  			 </ul>
+        </li>
+        <li>
+        	<a href="#" class="btn dropdown-toggle" type="button" data-toggle="dropdown">게시판
+        		<span class="caret"></span>
+        	</a>
+        	 <ul class="dropdown-menu">
+   				 <li><a href="#">자유게시판</a></li>
+   				 <li><a href="#">Q&A</a></li>
+   				 <li><a href="#">FAQ</a></li>
+  			 </ul>
+        </li>
+        <li>
+        	<a href="#" class="btn dropdown-toggle" type="button" data-toggle="dropdown">이벤트
+        		<span class="caret"></span>
+        	</a>
+        	 <ul class="dropdown-menu">
+   				 <li><a href="#">랜덤박스</a></li>
+   				 <li><a href="#">카드할인</a></li>
+   				 <li><a href="#">쿠폰지급</a></li>
+  			 </ul>
+        </li>
+      </ul>
+    </div>
+		</div>
+			<div class="navSearch">
+				<div class="collapse navbar-collapse" id="navbarColor02">
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="text" style="width: 500px;" placeholder="Search">
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<div class="outer">
+			<section>
+		
+				<div>
+				<br><br><br>
+					<iframe width="100%" height="25%" src="이미지 슬라이드.html" name="imgSlide" id="imgSlide" frameborder=0 framespacing=0></iframe>
+				</div>
+				<div>
+					<iframe width="100%" height="70%" src="메인Table.html" name="imgTable" id="imgTable" frameborder=0 framespacing=0></iframe>
+					
+				</div>
+			</section>
+			<footer>
+				<h5><strong>대덕인재개발원 202007반 5조</strong> </h5>
+				<h6><strong>김선준, 김성준, 길영주, 이선엽, 전진원</strong> </h6>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: #d6a6f8;
+    
+}
+
+.memory-game {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+    margin-top: 10px;
+    margin-bottom: 200px;
+}
+
+.game-card{
+    width: calc(25% - 10px);
+    height: calc(33.33%-10px);
+    margin: 5px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+
+.game-card:active {
+    transform: scale(.97) ;
+    transition: transform .2s;
+}
+
+.game-card.flip{
+    transform: rotateY(180deg);
+}
+.front-view, 
+.back-view{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    border-radius: 5px;
+    background: white;
+    backface-visibility: hidden;
+}
+
+.front-view{
+    transform: rotateY(180deg);
+}
+
+img{
+    width: 100px;
+}
+
+html, body {
+    margin: 0;
+}
+
+.full-screen-container {
+    background-image: url("https://i.pinimg.com/originals/b7/3d/4c/b73d4c5893800d24b20dd46972b63206.jpg");
+    height: 71%;
+    width: 63%;
+    background-size: cover;
+    background-position: center;
+  background-repeat:no repeat;
+    display: flex;
+  position:absolute;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-container {
+    background-color: hsla(5, 100%, 9%, 0.6);
+    padding: 50px 30px;
+    min-width: 400px;
+    width: 50%;
+    max-width: 600px;
+  border-radius:10%;
+}
+
+.login-title {
+    color: white;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: normal;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: white;
+    font-weight: lighter;
+    font-size: 1.5em;
+    margin-bottom: 7px;
+}
+
+.input-group input {
+    font-size: 1.5em;
+    padding: .1em .25em;
+    background-color: hsla(10, 100%, 91%, 0.3);
+    border: 1px solid hsl(10, 100%, 6%);
+    outline: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: lighter;
+}
+
+.input-group input:focus {a
+    border: 1px solid hsl(40, 100%, 50%)
+}
+
+.login-button {
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 10%; 
+    background-color: hsla(10, 100%, 50%, 0.1);
+    border: 1px solid hsl(41, 100%, 50%);
+    outline: none;
+    font-size: 1.5em;
+    color: white;
+    font-weight: lighter;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: hsla(100, 100%, 50%, 0.3)
+}
+
+.login-button:focus {
+    background-color: hsla(150, 100%, 50%, 0.5)
+}
+.message {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 12px;
+}

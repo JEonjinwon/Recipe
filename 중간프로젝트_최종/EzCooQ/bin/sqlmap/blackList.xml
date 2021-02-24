@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="blackList">
+<resultMap class="kr.or.ddit.report.vo.BlackListVO" id="blackListMap">
+
+	<result property="memId" column="MEM_ID"/>
+	<result property="bReason" column="B_REASON"/>
+	<result property="bDate" column="B_DATE"/>
+
+</resultMap>
+
+<insert id ="blackAdd" parameterClass="kr.or.ddit.report.vo.BlackListVO">
+INSERT INTO BLACKLIST
+	(
+		MEM_ID,
+		B_REASON,
+		B_DATE
+	)
+	VALUES
+	(
+		#memId#,
+		#bReason#,
+		SYSDATE
+	)
+</insert>
+
+<select id="selectBlack" resultMap="blackListMap">
+	SELECT * FROM BLACKLIST 
+</select>
+
+</sqlMap>

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+	margin-left: 1%;
+}
+
+body{
+	margin: 0;
+	padding : 0;
+	width: 90%;
+	height: 90%;
+}
+.chatDiv{
+	width:100%;
+	height:110%;
+	background-color: orange;
+	border-radius: 5%;
+	padding-left: 40px;
+}
+.chatDiv2{
+	width:110%;
+	height:100%;
+	background-color: orange;
+	border-radius: 5%;
+}
+.form{
+	padding-right: 10%;
+}
+
+h2{
+	text-align: center;
+}
+.noresize {
+  resize: none; /* 사용자 임의 변경 불가 */
+}
+.inputCht{
+	text-align:center;
+	width: 53%;
+}
+.subChat{
+	border-radius: 20%;
+}

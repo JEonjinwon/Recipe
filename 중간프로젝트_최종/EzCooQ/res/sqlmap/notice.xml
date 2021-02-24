@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="notice">
+
+	<resultMap class="kr.or.ddit.notice.vo.NoticeVO" id="noticeMap">
+	 	<result property="noticeNo" column="NOTICE_NO"/>
+	 	<result property="noticeDate" column="NOTICE_DATE"/>
+	 	<result property="noticeTitle" column="NOTICE_TITLE"/>
+	 	<result property="noticeContent" column="NOTICE_CONTENT"/>
+	 	<result property="noticeCate" column="NOTICE_CATE"/>
+	 </resultMap>
+	 
+	<select id="displayAll" resultMap="noticeMap">
+		select AA.* 
+		from
+		(select A.*, rownum rnum
+		from
+		(select * 
+		from NOTICE_BOARD WHERE NOTICE_CATE = '공지사항') A)AA
+		where rnum between #firstRecNo# and #lastRecNo#
+		order By 1 desc
+	</select>
+	
+	<select id="qnaDisplayAll" resultMap="noticeMap">
+		select AA.* 
+		from
+		(select A.*, rownum rnum
+		from
+		(select * 
+		from NOTICE_BOARD WHERE NOTICE_CATE = 'QNA') A)AA
+		where rnum between #firstRecNo# and #lastRecNo#
+		order By 1 desc
+	</select>
+	
+	<select id="selectTotalCount" resultClass="int">
+		select count(*) 
+			from NOTICE_BOARD
+		   WHERE NOTICE_CATE = '공지사항'
+	</select>
+	
+	<select id="qnaSelectTotalCount" resultClass="int">
+		select count(*) 
+			from NOTICE_BOARD
+		   WHERE NOTICE_CATE = 'QNA'
+	</select>
+	
+	<select id="getNotice" resultMap="noticeMap">
+		select * from NOTICE_BOARD WHERE NOTICE_NO = #noticeNo# AND NOTICE_CATE = '공지사항'
+	</select>
+	
+	<select id="getQna" resultMap="noticeMap">
+		select * from NOTICE_BOARD WHERE NOTICE_NO = #noticeNo# AND NOTICE_CATE = 'QNA'
+	</select>
+	
+	<insert id="insertNotice" parameterClass="kr.or.ddit.notice.vo.NoticeVO">
+		insert into NOTICE_BOARD
+		(NOTICE_NO, NOTICE_DATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_CATE)
+		values (NOTICE_SEQ.NEXTVAL, SYSDATE, #noticeTitle#, #noticeContent#, '공지사항')
+	</insert>
+	
+	<insert id="insertQna" parameterClass="kr.or.ddit.notice.vo.NoticeVO">
+		insert into NOTICE_BOARD
+		(NOTICE_NO, NOTICE_DATE, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_CATE)
+		values (NOTICE_SEQ.NEXTVAL, SYSDATE, #noticeTitle#, #noticeContent#, 'QNA')
+	</insert>
+	
+	<update id="updateNotice" parameterClass="kr.or.ddit.notice.vo.NoticeVO">
+		update NOTICE_BOARD
+			set NOTICE_DATE = SYSDATE
+			  , NOTICE_TITLE = #noticeTitle#
+			  , NOTICE_CONTENT = #noticeContent#
+		where NOTICE_NO = #noticeNo#
+		  AND NOTICE_CATE = '공지사항'
+	</update>
+	<update id="updateQna" parameterClass="kr.or.ddit.notice.vo.NoticeVO">
+		update NOTICE_BOARD
+			set NOTICE_DATE = SYSDATE
+			  , NOTICE_TITLE = #noticeTitle#
+			  , NOTICE_CONTENT = #noticeContent#
+		where NOTICE_NO = #noticeNo#
+		  AND NOTICE_CATE = 'QNA'
+	</update>
+	
+	<delete id="deleteNotice" parameterClass="Integer">
+		delete from NOTICE_BOARD 
+		  where NOTICE_NO = #noticeNo#
+		    AND NOTICE_CATE = '공지사항'
+	</delete>
+	<delete id="deleteQna" parameterClass="Integer">
+		delete from NOTICE_BOARD 
+		  where NOTICE_NO = #noticeNo#
+		    AND NOTICE_CATE = 'QNA'
+	</delete>
+</sqlMap>			
+
+
+
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="login">
+	<resultMap class="kr.or.ddit.member.vo.MemberVO" id="memberMap">
+		<result property="memId" column="mem_id"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPass" column="mem_pass"/>
+		<result property="memBir" column="mem_bir"/>
+		<result property="memGender" column="mem_gender"/>
+		<result property="memTel" column="mem_Tel"/>
+		<result property="memMail" column="mem_mail"/>
+		<result property="memDel" column="mem_del"/>
+		<result property="pointTotal" column="point_total"/>
+	</resultMap>
+
+	
+	<!-- 로그인 -->
+	<select id="loginMember" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="int">
+		SELECT count(*) FROM MEMBER
+		where MEM_ID=#memId#
+		AND MEM_PASS=#memPass#
+	</select>
+</sqlMap>			
+
+
+
+
+
